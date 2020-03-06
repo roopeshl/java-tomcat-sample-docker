@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build Application') {
             steps {
-                sh 'mvn -f pom.xml clean package'
+               sudo sh 'mvn -f pom.xml clean package'
             }
             post {
                 success {
@@ -15,8 +15,8 @@ pipeline {
 
         stage('Create Tomcat Docker Image'){
             steps {
-                sh "pwd"
-                sh "docker build . -t tomcatsamplewebapp:${env.BUILD_ID}"
+                sudo sh "pwd"
+                sudo sh "docker build . -t tomcatsamplewebapp:${env.BUILD_ID}"
             }
         }
 
